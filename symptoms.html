@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker | AYUMAX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="symptom-page">
+
+    <header class="symptom-header">
+        <div class="logo">✦ AYUMAX<span>.</span></div>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="history.html">Health History</a>
+        </nav>
+    </header>
+
+    <main class="checker">
+
+        <div class="checker-heading">
+            <span class="tag">✦ AI HEALTH ASSISTANT</span>
+            <h1>Symptom <span>Checker</span></h1>
+            <p>Tell us how you're feeling. Let's understand your symptoms.</p>
+        </div>
+
+        <div class="checker-box">
+
+            <div class="form-heading">
+                <h2>Describe Your Condition</h2>
+                <p>Provide a few details to get started.</p>
+            </div>
+
+            <form id="symptomForm">
+
+                <div class="symptom-field">
+                    <label for="age">Your Age</label>
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Enter your age"
+                        min="1"
+                        max="120"
+                        required
+                    >
+                </div>
+
+                <div class="symptom-field">
+                    <label for="symptoms">Describe your symptoms</label>
+                    <textarea
+                        id="symptoms"
+                        placeholder="Example: Headache, fever, cough..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="symptom-field">
+                    <label for="duration">How long have you experienced them?</label>
+                    <select id="duration" required>
+                        <option value="">Select duration</option>
+                        <option>Less than a day</option>
+                        <option>1-3 days</option>
+                        <option>4-7 days</option>
+                        <option>More than a week</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Analyse Symptoms →
+                </button>
+
+            </form>
+
+            <div id="result"></div>
+
+        </div>
+
+        <div class="medical-note">
+            <span>ⓘ</span>
+            AYUMAX provides informational guidance, not a medical diagnosis.
+            Seek professional medical care for health concerns.
+            If symptoms are severe or life-threatening, seek emergency care.
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

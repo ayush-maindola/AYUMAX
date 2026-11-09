@@ -1,0 +1,251 @@
+
+/* AYUMAX MEDICAL REPORT ANALYZER */
+
+.report-page {
+    margin: 0;
+    min-height: 100vh;
+    background: #07111f;
+    color: #eaf3ff;
+    font-family: Arial, sans-serif;
+}
+
+.report-page .symptom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 7%;
+    background: #0b1728;
+    border-bottom: 1px solid #1c3048;
+}
+
+.report-page .logo {
+    color: #00d4ff;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.report-page nav {
+    display: flex;
+    gap: 28px;
+}
+
+.report-page nav a {
+    color: #b8c9dc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.report-page nav a:hover {
+    color: #00d4ff;
+}
+
+.report-page .checker {
+    width: min(1050px, 90%);
+    margin: 55px auto;
+}
+
+.report-page .checker-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.report-page .tag {
+    color: #00d4ff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.report-page .checker-heading h1 {
+    font-size: clamp(30px, 5vw, 45px);
+    margin: 18px 0 10px;
+    color: white;
+}
+
+.report-page .checker-heading h1 span {
+    color: #00d4ff;
+}
+
+.report-page .checker-heading p {
+    color: #91a6bd;
+}
+
+.report-page .checker-box {
+    padding: 38px;
+    background: #101f32;
+    border: 1px solid #243b55;
+    border-radius: 18px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+}
+
+.report-page .form-heading {
+    margin-bottom: 30px;
+}
+
+.report-page .form-heading h2 {
+    color: white;
+    font-size: 23px;
+}
+
+.report-page .form-heading p {
+    color: #91a6bd;
+}
+
+.report-page #reportForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 23px;
+}
+
+.report-page .symptom-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.report-page .symptom-field:has(textarea),
+.report-page .symptom-field:has(input[type="file"]),
+.report-page .medical-note,
+.report-page #reportForm button {
+    grid-column: 1 / -1;
+}
+
+.report-page .symptom-field label {
+    color: #dceafa;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.report-page .symptom-field input,
+.report-page .symptom-field select,
+.report-page .symptom-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    background: #091626;
+    color: white;
+    border: 1px solid #304760;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.report-page .symptom-field textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.report-page .symptom-field input:focus,
+.report-page .symptom-field select:focus,
+.report-page .symptom-field textarea:focus {
+    border-color: #00d4ff;
+    box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+}
+
+.report-page .symptom-field select option {
+    background: #101f32;
+}
+
+.report-page .symptom-field input[type="file"] {
+    padding: 22px;
+    border: 2px dashed #00a9ce;
+    background: #0b1a2d;
+    cursor: pointer;
+}
+
+.report-page .symptom-field input[type="file"]::file-selector-button {
+    padding: 10px 16px;
+    margin-right: 15px;
+    color: #07111f;
+    background: #00d4ff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.report-page .symptom-field small {
+    color: #8299b1;
+}
+
+.report-page .medical-note {
+    padding: 16px;
+    color: #a8bdd3;
+    background: #132840;
+    border: 1px solid #274765;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.report-page #reportForm .primary-btn {
+    width: 100%;
+    padding: 16px;
+    color: #061421;
+    background: #00c9f2;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+@media (max-width: 650px) {
+    .report-page .symptom-header {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .report-page nav {
+        gap: 15px;
+    }
+
+    .report-page .checker {
+        margin: 35px auto;
+    }
+
+    .report-page .checker-box {
+        padding: 22px;
+    }
+
+    .report-page #reportForm {
+        grid-template-columns: 1fr;
+    }
+}
+/* Two-column patient information layout */
+
+.report-page #reportForm {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.report-page .symptom-field {
+    grid-column: auto !important;
+}
+
+/* Full-width upload and privacy section */
+
+.report-page .symptom-field:has(#reportFile),
+.report-page .medical-note,
+.report-page #reportForm button {
+    grid-column: 1 / -1 !important;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 650px) {
+    .report-page #reportForm {
+        grid-template-columns: 1fr;
+    }
+
+    .report-page .symptom-field,
+    .report-page .symptom-field:has(#reportFile),
+    .report-page .medical-note,
+    .report-page #reportForm button {
+        grid-column: 1 / -1 !important;
+    }
+}

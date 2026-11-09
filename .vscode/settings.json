@@ -1,0 +1,11 @@
+
+{
+    "python.pythonPath": "C:\\Users\\Dell\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+
+    "liveServer.settings.ignoreFiles": [
+        ".vscode/**",
+        "**/*.db",
+        "**/*.sqlite",
+        "**/*.sqlite3"
+    ]
+}

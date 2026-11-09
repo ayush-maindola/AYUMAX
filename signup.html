@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYUMAX - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">✦ AYUMAX</div>
+
+        <h1>Create Account</h1>
+        <p class="auth-subtitle">Begin your health journey with us</p>
+
+        <form id="signup-form">
+
+            <div class="auth-input-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                    required
+                >
+            </div>
+
+            <div class="auth-input-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    required
+                >
+            </div>
+
+            <div class="auth-input-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create password (8+ characters)"
+                    minlength="8"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="auth-btn">
+                Create Account →
+            </button>
+
+        </form>
+
+        <p id="signup-message"></p>
+
+        <p class="auth-footer">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+        <div class="auth-bottom">
+            ✦ SMART HEALTHCARE FOR A HEALTHIER YOU
+        </div>
+
+    </div>
+
+    <script src="signup.js"></script>
+
+</body>
+</html>

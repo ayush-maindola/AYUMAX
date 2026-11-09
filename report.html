@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medical Report Analyzer | AYUMAX</title>
+
+    <!-- Main Website CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Report Analyzer CSS -->
+    <link rel="stylesheet" href="report.css">
+</head>
+
+<body class="report-page">
+
+    <!-- HEADER -->
+    <header class="symptom-header">
+
+        <div class="logo">
+            ✦ AYUMAX<span>.</span>
+        </div>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="symptoms.html">Symptom Checker</a>
+            <a href="history.html">Health History</a>
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="checker">
+
+        <!-- PAGE HEADING -->
+        <div class="checker-heading">
+
+            <span class="tag">
+                ✦ AI MEDICAL REPORT ANALYZER
+            </span>
+
+            <h1>
+                Understand Your <span>Health Report</span>
+            </h1>
+
+            <p>
+                Upload your medical report and let AYUMAX help you
+                understand your health information.
+            </p>
+
+        </div>
+
+
+        <!-- FORM CARD -->
+        <div class="checker-box">
+
+            <div class="form-heading">
+
+                <h2>Patient Information</h2>
+
+                <p>
+                    Provide a few details for a more relevant
+                    medical report explanation.
+                </p>
+
+            </div>
+
+
+            <form id="reportForm">
+
+
+                <!-- AGE -->
+                <div class="symptom-field">
+
+                    <label for="age">
+                        Age *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        placeholder="Enter your age"
+                        min="1"
+                        max="120"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SEX -->
+                <div class="symptom-field">
+
+                    <label for="sex">
+                        Sex for medical reference ranges *
+                    </label>
+
+                    <select id="sex" name="sex" required>
+
+                        <option value="">
+                            Select an option
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Not sure">
+                            Not sure
+                        </option>
+
+                        <option value="Prefer not to say">
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- GENDER IDENTITY -->
+                <div class="symptom-field">
+
+                    <label for="gender">
+                        Gender Identity (Optional)
+                    </label>
+
+                    <select id="gender" name="gender">
+
+                        <option value="">
+                            Select an option
+                        </option>
+
+                        <option value="Woman">
+                            Woman
+                        </option>
+
+                        <option value="Man">
+                            Man
+                        </option>
+
+                        <option value="Non-binary">
+                            Non-binary
+                        </option>
+
+                        <option value="Prefer not to say">
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PREGNANCY -->
+                <div class="symptom-field">
+
+                    <label for="pregnancy">
+                        Pregnancy Status (Optional)
+                    </label>
+
+                    <select id="pregnancy" name="pregnancy">
+
+                        <option value="">
+                            Not applicable / Prefer not to say
+                        </option>
+
+                        <option value="Pregnant">
+                            Pregnant
+                        </option>
+
+                        <option value="Not pregnant">
+                            Not pregnant
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TEST REASON -->
+                <div class="symptom-field">
+
+                    <label for="reason">
+                        Reason for Medical Test
+                    </label>
+
+                    <textarea
+                        id="reason"
+                        name="reason"
+                        placeholder="Example: Routine health checkup, fever, weakness..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- SYMPTOMS -->
+                <div class="symptom-field">
+
+                    <label for="symptoms">
+                        Current Symptoms (Optional)
+                    </label>
+
+                    <textarea
+                        id="symptoms"
+                        name="symptoms"
+                        placeholder="Describe any symptoms you currently experience..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- EXISTING CONDITIONS -->
+                <div class="symptom-field">
+
+                    <label for="conditions">
+                        Existing Medical Conditions (Optional)
+                    </label>
+
+                    <textarea
+                        id="conditions"
+                        name="conditions"
+                        placeholder="Example: Diabetes, thyroid condition, etc."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- MEDICATIONS -->
+                <div class="symptom-field">
+
+                    <label for="medications">
+                        Current Medications (Optional)
+                    </label>
+
+                    <textarea
+                        id="medications"
+                        name="medications"
+                        placeholder="Enter medicines you currently take..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- REPORT UPLOAD -->
+                <div class="symptom-field">
+
+                    <label for="reportFile">
+                        Upload Medical Report *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="reportFile"
+                        name="reportFile"
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        multiple
+                        required
+                    >
+
+                    <small>
+                        Supported formats: PDF, JPG, JPEG and PNG.
+                        You can select multiple files.
+                    </small>
+
+                </div>
+
+
+                <!-- PRIVACY NOTE -->
+                <div class="medical-note">
+
+                    <span>ⓘ</span>
+
+                    Your medical reports contain sensitive health
+                    information. Avoid uploading unnecessary personal
+                    identifiers. Your information should be processed
+                    securely and not stored permanently without your
+                    permission.
+
+                    AYUMAX provides informational guidance, not a
+                    medical diagnosis.
+
+                </div>
+
+
+                <!-- SUBMIT BUTTON -->
+                <button
+                    type="button"
+                    class="primary-btn"
+                    disabled
+                >
+                    Analyse Medical Report — Coming Soon
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYUMAX | Health History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="history-dashboard">
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>✦ AYUMAX</h1>
+                <p>Your Health, Our Priority</p>
+            </div>
+
+            <nav>
+                <a href="dashboard.html">⌂ Dashboard</a>
+                <a href="symptoms.html">♡ Symptom Checker</a>
+                <a href="history.html" class="active">◷ Health History</a>
+            </nav>
+
+            <button id="logout-btn" class="logout-btn">
+                ↪ Logout
+            </button>
+        </aside>
+
+        <main class="history-main-content">
+
+            <header class="history-topbar">
+                <span>AYUMAX HEALTH PORTAL</span>
+                <a href="dashboard.html">← Back to Dashboard</a>
+            </header>
+
+            <section class="history-welcome">
+                <span class="history-label">YOUR PERSONAL HEALTH RECORDS</span>
+                <h1>Health History</h1>
+                <p>All your previous symptom assessments in one place.</p>
+            </section>
+
+            <section class="history-records-section">
+
+                <div class="records-heading">
+                    <div>
+                        <h2>Previous Assessments</h2>
+                        <p>Your saved health assessment records</p>
+                    </div>
+
+                    <a href="symptoms.html" class="new-assessment-btn">
+                        + New Assessment
+                    </a>
+                </div>
+
+                <div id="history-container">
+                    <p class="history-loading">Loading your records...</p>
+                </div>
+
+            </section>
+
+            <footer class="history-page-footer">
+                AYUMAX • SMART HEALTHCARE FOR A HEALTHIER YOU
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="history.js"></script>
+
+</body>
+</html>
