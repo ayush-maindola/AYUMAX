@@ -7,7 +7,7 @@ async function loadHistory() {
 
     try {
         const response = await fetch(
-            "http://127.0.0.1:5000/history",
+            "https://ayumax-backend.onrender.com/history",
             {
                 method: "GET",
                 credentials: "include"
@@ -101,7 +101,7 @@ if (logoutBtn) {
 
         try {
             const response = await fetch(
-                "http://127.0.0.1:5000/logout",
+                "https://ayumax-backend.onrender.com/logout",
                 {
                     method: "POST",
                     credentials: "include"

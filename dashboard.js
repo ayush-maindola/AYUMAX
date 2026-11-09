@@ -5,7 +5,7 @@ const logoutBtn = document.getElementById("logout-btn");
 async function loadDashboard() {
     try {
         const response = await fetch(
-            "http://127.0.0.1:5000/me",
+            "https://ayumax-backend.onrender.com/me",
             {
                 method: "GET",
                 credentials: "include"
@@ -36,7 +36,7 @@ if (logoutBtn) {
     logoutBtn.addEventListener("click", async function() {
         try {
             const response = await fetch(
-                "http://127.0.0.1:5000/logout",
+                "https://ayumax-backend.onrender.com/logout",
                 {
                     method: "POST",
                     credentials: "include"

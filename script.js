@@ -44,7 +44,7 @@ if (form) {
             console.log("STEP 1: Saving assessment");
 
             const saveResponse = await fetch(
-                "http://127.0.0.1:5000/check-symptoms",
+                "https://ayumax-backend.onrender.com/check-symptoms",
                 {
                     method: "POST",
                     headers: {
@@ -79,7 +79,7 @@ if (form) {
                 "AYUMAX AI is analysing your symptoms...\n\nPlease wait.";
 
             const aiResponse = await fetch(
-                "http://127.0.0.1:5000/analyze-symptoms",
+                "https://ayumax-backend.onrender.com/analyze-symptoms",
                 {
                     method: "POST",
                     headers: {

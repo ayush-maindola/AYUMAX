@@ -10,7 +10,7 @@ loginForm.addEventListener("submit", async function(event) {
     const message = document.getElementById("login-message");
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/login", {
+        const response = await fetch("https://ayumax-backend.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
