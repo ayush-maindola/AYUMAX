@@ -23,15 +23,15 @@ CORS(
     ]
 )
 
-app.secret_key = "AYUMAX-local-development-secret-change-later"
+app.secret_key = os.environ.get("SECRET_KEY")
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-app.config["SESSION_COOKIE_SECURE"] = False
+app.config["SESSION_COOKIE_SECURE"] = os.environ.get("SESSION_COOKIE_SECURE", "False").lower() == "true"
 
 
 # Database connection
 def get_db_connection():
-    connection = sqlite3.connect("backend/nebula.db")
+    connection = sqlite3.connect(os.path.join(os.path.dirname(os.path.abspath(__file__)), "nebula.db"))
     connection.row_factory = sqlite3.Row
     return connection
 
@@ -352,6 +352,7 @@ def analyze_symptoms():
         }), 503
     
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
-    app.run(debug=True)   
+    app.run(debug=False)
