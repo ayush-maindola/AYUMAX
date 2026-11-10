@@ -3,3 +3,4 @@ Flask-Cors
 google-genai
 python-dotenv
 gunicorn
+psycopg[binary]
