@@ -89,7 +89,8 @@ if (form) {
                     body: JSON.stringify({
                         age: age,
                         symptoms: symptoms,
-                        duration: duration
+                        duration: duration,
+                        assessment_id: saveData.assessment_id
                     })
                 }
             );
@@ -145,7 +146,9 @@ if (form) {
 
             result.textContent = "Analysis complete! Opening your report...";
 
-            window.location.assign("./result.html");
+            window.location.assign(
+                "./result.html?id=" + encodeURIComponent(saveData.assessment_id)
+            );
 
             return;
 

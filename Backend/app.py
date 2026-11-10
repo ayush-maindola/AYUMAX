@@ -74,6 +74,11 @@ def init_db():
             )
         """)
 
+        connection.execute("""
+            ALTER TABLE assessments
+            ADD COLUMN IF NOT EXISTS analysis TEXT
+        """)
+
 
 @app.route("/")
 def home():
@@ -253,7 +258,8 @@ def get_history():
 
     with get_db_connection() as connection:
         records = connection.execute("""
-            SELECT * FROM assessments
+            SELECT id, age, symptoms, duration, created_at
+            FROM assessments
             WHERE user_id = %s
             ORDER BY id DESC
         """, (user_id,)).fetchall()
@@ -274,6 +280,12 @@ def analyze_symptoms():
     age = data.get("age")
     symptoms = data.get("symptoms", "")
     duration = data.get("duration", "")
+    assessment_id = data.get("assessment_id")
+
+    try:
+        assessment_id = int(assessment_id)
+    except (ValueError, TypeError):
+        return jsonify({"error": "Invalid assessment ID"}), 400
 
     if not isinstance(symptoms, str) or not isinstance(duration, str):
         return jsonify({"error": "Invalid input"}), 400
@@ -293,6 +305,16 @@ def analyze_symptoms():
 
     if len(symptoms) > 2000:
         return jsonify({"error": "Symptoms are too long"}), 400
+
+    # Verify assessment belongs to logged-in user
+    with get_db_connection() as connection:
+        assessment = connection.execute("""
+            SELECT id FROM assessments
+            WHERE id = %s AND user_id = %s
+        """, (assessment_id, user_id)).fetchone()
+
+    if assessment is None:
+        return jsonify({"error": "Assessment not found"}), 404
 
     prompt = f"""
     You are AYUMAX, an AI health information assistant.
@@ -323,9 +345,25 @@ def analyze_symptoms():
             contents=prompt
         )
 
+        analysis = response.text
+
+        if not analysis:
+            raise ValueError("Empty AI response")
+
+        # Save AI result to the exact assessment
+        with get_db_connection() as connection:
+            cursor = connection.execute("""
+                UPDATE assessments
+                SET analysis = %s
+                WHERE id = %s AND user_id = %s
+            """, (analysis, assessment_id, user_id))
+
+            if cursor.rowcount == 0:
+                return jsonify({"error": "Assessment not found"}), 404
+
         return jsonify({
             "status": "success",
-            "analysis": response.text
+            "analysis": analysis
         })
 
     except Exception as error:
@@ -334,6 +372,27 @@ def analyze_symptoms():
         return jsonify({
             "error": "AI analysis is temporarily unavailable."
         }), 503
+
+
+# GET ONE SAVED ASSESSMENT
+@app.route("/assessment/<int:assessment_id>", methods=["GET"])
+def get_assessment(assessment_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "Please login first"}), 401
+
+    with get_db_connection() as connection:
+        record = connection.execute("""
+            SELECT id, age, symptoms, duration, created_at, analysis
+            FROM assessments
+            WHERE id = %s AND user_id = %s
+        """, (assessment_id, user_id)).fetchone()
+
+    if record is None:
+        return jsonify({"error": "Assessment not found"}), 404
+
+    return jsonify(record)
 
 
 # INITIALIZE DATABASE

@@ -1,21 +1,51 @@
-
 console.log("AYUMAX RESULT PAGE LOADED");
 
 const analysisContent = document.getElementById("analysis-content");
 
-const savedAnalysis = sessionStorage.getItem("ayumaxAnalysis");
+async function loadResult() {
 
-if (savedAnalysis) {
+    const params = new URLSearchParams(window.location.search);
+    const assessmentId = params.get("id");
+
+    if (!assessmentId) {
+        analysisContent.textContent = "No assessment ID found.";
+        return;
+    }
+
+    analysisContent.textContent = "Loading your saved AI analysis...";
+
     try {
-        const data = JSON.parse(savedAnalysis);
+        const response = await fetch(
+            `https://ayumax-backend.onrender.com/assessment/${encodeURIComponent(assessmentId)}`,
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
+
+        if (response.status === 401) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Unable to load result.");
+        }
+
+        if (!data.analysis) {
+            analysisContent.textContent =
+                "No saved AI result is available for this older assessment.";
+            return;
+        }
 
         analysisContent.textContent = data.analysis;
+
     } catch (error) {
-        analysisContent.textContent =
-            "Unable to display your analysis. Please try again.";
-        console.error("Result Error:", error);
+        console.error(error);
+        analysisContent.textContent = error.message;
     }
-} else {
-    analysisContent.textContent =
-        "No analysis found. Please visit the Symptom Checker and try again.";
 }
+
+loadResult();

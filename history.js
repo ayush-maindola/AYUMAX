@@ -2,17 +2,16 @@
 const container = document.getElementById("history-container");
 const logoutBtn = document.getElementById("logout-btn");
 
+const API_URL = "https://ayumax-backend.onrender.com";
+
 // Load assessment history
 async function loadHistory() {
 
     try {
-        const response = await fetch(
-            "https://ayumax-backend.onrender.com/history",
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
+        const response = await fetch(`${API_URL}/history`, {
+            method: "GET",
+            credentials: "include"
+        });
 
         if (response.status === 401) {
             window.location.href = "login.html";
@@ -44,14 +43,22 @@ async function loadHistory() {
             const card = document.createElement("div");
             card.className = "assessment-record";
 
+            // Make card clickable
+            card.style.cursor = "pointer";
+            card.setAttribute("role", "link");
+            card.tabIndex = 0;
+
             const date = new Date(record.created_at);
+
             const formattedDate = isNaN(date.getTime())
                 ? record.created_at
                 : date.toLocaleString();
 
             card.innerHTML = `
                 <div class="record-top">
-                <span class="record-number">ASSESSMENT #${index + 1}</span>
+                    <span class="record-number">
+                        ASSESSMENT #${index + 1}
+                    </span>
                     <span class="record-date"></span>
                 </div>
 
@@ -71,23 +78,48 @@ async function loadHistory() {
                     <span>REPORTED SYMPTOMS</span>
                     <p class="record-symptom-text"></p>
                 </div>
+
+                <div class="record-open-hint">
+                    Click to view AI result →
+                </div>
             `;
 
-            // Use textContent for user-provided data
             card.querySelector(".record-date").textContent = formattedDate;
-            card.querySelector(".record-age").textContent = record.age + " years";
-            card.querySelector(".record-duration").textContent = record.duration;
-            card.querySelector(".record-symptom-text").textContent = record.symptoms;
+            card.querySelector(".record-age").textContent =
+                record.age + " years";
+
+            card.querySelector(".record-duration").textContent =
+                record.duration;
+
+            card.querySelector(".record-symptom-text").textContent =
+                record.symptoms;
+
+            // Open saved result
+            function openResult() {
+                window.location.href =
+                    `result.html?id=${encodeURIComponent(record.id)}`;
+            }
+
+            card.addEventListener("click", openResult);
+
+            card.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openResult();
+                }
+            });
 
             container.appendChild(card);
         });
 
     } catch (error) {
+
         container.innerHTML = `
             <div class="history-error">
                 Unable to load your records. Please try again.
             </div>
         `;
+
         console.error(error);
     }
 }
@@ -97,16 +129,14 @@ loadHistory();
 
 // Logout
 if (logoutBtn) {
+
     logoutBtn.addEventListener("click", async function() {
 
         try {
-            const response = await fetch(
-                "https://ayumax-backend.onrender.com/logout",
-                {
-                    method: "POST",
-                    credentials: "include"
-                }
-            );
+            const response = await fetch(`${API_URL}/logout`, {
+                method: "POST",
+                credentials: "include"
+            });
 
             if (response.ok) {
                 sessionStorage.removeItem("loggedIn");
